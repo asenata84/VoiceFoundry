@@ -9,22 +9,21 @@ export class VoiceFoundryStack extends cdk.Stack {
 
     // DynamoDB table
     const table = new dynamodb.Table(this, 'VanityNumbers', {
-      // tableName: 'VanityNumbers',
       partitionKey: { name: 'phone', type: dynamodb.AttributeType.STRING },
       sortKey: { name: 'createdAt', type: dynamodb.AttributeType.NUMBER }
     });
 
     // AWS Lambda for generating vanity numbers
     const generateVanityNumbersLambda = new lambda.Function(this, 'GenerateVanityNumbers', {
-      runtime: lambda.Runtime.NODEJS_14_X,                    // execution environment
-      code: lambda.Code.fromAsset('resources/Lamda.zip'),     // code loaded from "resources" directory
+      runtime: lambda.Runtime.NODEJS_14_X,
+      code: lambda.Code.fromAsset('resources/Lamda.zip'),
       handler: 'index.handler',
       environment: {
         TABLE_NAME: table.tableName
       }
     });
 
-    // grant the lambda role read/write permissions to our table
+    // Grant the lambda role read/write permissions to the table
     table.grantReadWriteData(generateVanityNumbersLambda);
 
     // Connect ContactFlow
