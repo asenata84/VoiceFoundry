@@ -1,14 +1,3 @@
-# Welcome to your CDK TypeScript project
+# VoiceFoundry Development Project
 
-This is a blank project for TypeScript development with CDK.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+This is a project creates a stack using AWS CDK wich implements an Amazon connect ContactFlow with a Lambda function for generating vanity numbers and store them into DynamoDB table and returns up to three results to the contact flow.
